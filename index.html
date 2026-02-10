@@ -18,16 +18,21 @@
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.7;color:var(--text);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
         .header{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);z-index:1000;border-bottom:1px solid var(--border);transition:all 0.3s ease;box-shadow:var(--shadow-sm)}
         .header.hidden{transform:translateY(-100%)}
-        .nav-container{max-width:1200px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+        .nav-container{max-width:1200px;margin:0 auto;padding:1rem 2rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:2rem}
         .logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none;color:var(--primary);font-weight:800;font-size:1.25rem;transition:all 0.3s ease}
         .logo:hover{color:var(--accent);transform:scale(1.02)}
         .logo-icon{width:40px;height:40px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.5rem}
-        .nav-links{display:flex;gap:2rem;list-style:none}
+        .nav-center{display:flex;justify-content:center;align-items:center}
+        .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
         .nav-links a{text-decoration:none;color:var(--text-light);font-weight:600;font-size:0.95rem;transition:all 0.3s;position:relative;padding:0.5rem 0}
         .nav-links a:hover{color:var(--primary)}
         .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s ease;border-radius:2px}
         .nav-links a:hover::after{width:100%}
-        .mobile-menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--primary)}
+        .nav-cta{display:flex;align-items:center}
+        .nav-cta .btn-nav{padding:0.75rem 1.5rem;font-size:0.9rem;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hover) 100%);color:white;border-radius:var(--radius);text-decoration:none;font-weight:700;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);box-shadow:var(--shadow-sm);white-space:nowrap}
+        .nav-cta .btn-nav:hover{transform:translateY(-2px);box-shadow:var(--shadow-md),0 0 20px rgba(245,158,11,0.3)}
+        .mobile-menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--primary);padding:0.5rem}
+        .mobile-phone-btn{display:none}
         .hero{margin-top:72px;background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 50%,var(--primary-light) 100%);color:white;padding:5rem 2rem;position:relative;overflow:hidden}
         .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at top right,rgba(245,158,11,0.15) 0%,transparent 50%),radial-gradient(ellipse at bottom left,rgba(245,158,11,0.1) 0%,transparent 50%);pointer-events:none}
         .hero-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
@@ -129,6 +134,9 @@
         .areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
         .area-item{background:rgba(255,255,255,0.08);padding:1.25rem 1rem;border-radius:var(--radius);text-align:center;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);transition:all 0.4s ease}
         .area-item:hover{background:rgba(255,255,255,0.15);transform:translateY(-3px);border-color:rgba(245,158,11,0.3);box-shadow:0 10px 20px -5px rgba(0,0,0,0.2)}
+        .map-container{width:100%;max-width:800px;margin:3rem auto 0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,0.2);position:relative;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px)}
+        .map-container iframe{width:100%;height:400px;border:0;display:block;filter:grayscale(20%) contrast(1.1)}
+        @media(max-width:640px){.map-container iframe{height:300px}}
         .footer{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:white;padding:5rem 2rem 2rem;position:relative}
         .footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(245,158,11,0.5),transparent)}
         .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto}
@@ -157,12 +165,21 @@
         .dropdown-toggle::after{content:'▼';font-size:0.7rem;transition:transform 0.3s}
         .nav-dropdown.active .dropdown-toggle::after{transform:rotate(180deg)}
         @media(max-width:968px){
-            .nav-dropdown{position:static}
-            .dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;padding:0;max-height:0;overflow:hidden;opacity:1;visibility:visible;transform:none;transition:max-height 0.3s ease;background:var(--bg-alt);margin:0.5rem -1rem}
+            .nav-container{grid-template-columns:auto 1fr auto;gap:1rem}
+            .nav-center{justify-content:flex-end}
+            .nav-cta{display:none}
+            .nav-links{position:absolute;top:100%;left:0;right:0;background:white;flex-direction:column;padding:1.5rem 2rem;box-shadow:var(--shadow-lg);gap:0;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+            .nav-links.active{opacity:1;visibility:visible;transform:translateY(0)}
+            .nav-links li{width:100%;border-bottom:1px solid var(--border)}
+            .nav-links li:last-child{border-bottom:none}
+            .nav-links a{display:block;padding:1rem 0;font-size:1.1rem}
+            .mobile-phone-btn{display:block;margin-top:1rem;padding-top:1rem;border-top:2px solid var(--border)}
+            .mobile-phone-btn a{display:flex !important;justify-content:center;align-items:center}
+            .nav-dropdown{position:static;width:100%}
+            .dropdown-menu{position:static;box-shadow:none;border:none;border-radius:0;padding:0;max-height:0;overflow:hidden;opacity:1;visibility:visible;transform:none;transition:max-height 0.3s ease;background:var(--bg-alt);margin:0;width:100%}
             .nav-dropdown.active .dropdown-menu{max-height:300px;padding:0.5rem 0}
+            .dropdown-toggle{display:flex;width:100%;padding:1rem 0;font-size:1.1rem;justify-content:space-between}
             .dropdown-toggle::after{margin-left:auto}
-            .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:white;flex-direction:column;padding:2rem;box-shadow:var(--shadow-lg);gap:1.5rem}
-            .nav-links.active{display:flex}
             .mobile-menu-btn{display:block}
             .hero-container{grid-template-columns:1fr;text-align:center}
             .hero-content h1{font-size:2.25rem}
@@ -202,12 +219,11 @@
         <div class="nav-container">
             <a href="#" class="logo">
                 <img src="assets/images/logo.webp" alt="Locksmith Jacksonville FL" style="height:40px;width:auto;border-radius:8px;">
-                <span>Locksmith Jacksonville FL</span>
             </a>
             
-            <nav>
+            <nav class="nav-center">
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#">Home</a></li>
                     <li class="nav-dropdown" id="servicesDropdown">
                         <span class="dropdown-toggle">Services</span>
                         <div class="dropdown-menu">
@@ -217,9 +233,14 @@
                             <a href="#emergency">Emergency</a>
                         </div>
                     </li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#areas">Service Area</a></li>
+                    <li class="mobile-phone-btn"><a href="tel:9049228355" class="btn-nav">📞 Call Now</a></li>
                 </ul>
             </nav>
+            
+            <div class="nav-cta">
+                <a href="tel:9049228355" class="btn-nav">📞 (904) 922-8355</a>
+            </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
         </div>
@@ -1223,7 +1244,7 @@
     </section>
 
     <!-- Service Areas -->
-    <section class="service-areas">
+    <section class="service-areas" id="areas">
         <div class="container">
             <h2>Service Areas</h2>
             <p>We proudly serve Jacksonville and surrounding communities within a 60-mile radius.</p>
@@ -1246,6 +1267,10 @@
                 <div class="area-item">Jacksonville</div>
                 <div class="area-item">St Augustine Beach</div>
                 <div class="area-item">Nocatee</div>
+            </div>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8763633564474!2d-81.7877849848706!3d30.27368418180041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5c5e7f5d6c7b5%3A0x7e8b4b8c5d6e7f8a!2s9049%20Norfolk%20Blvd%2C%20Jacksonville%2C%20FL%2032208!5e0!3m2!1sen!2sus!4v1707523200000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Locksmith Jacksonville FL Location"></iframe>
             </div>
         </div>
     </section>
