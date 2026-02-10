@@ -107,7 +107,9 @@
         .highlight-box:hover::before{opacity:1}
         .highlight-box.featured{border-left-width:6px;background:linear-gradient(135deg,white 0%,rgba(245,158,11,0.05) 100%)}
         .highlight-box.secondary{background:var(--primary);color:white;border-left-color:var(--accent)}
+        .highlight-box.secondary h4,.highlight-box.secondary li,.highlight-box.secondary p{color:white}
         .highlight-box.emergency-cta{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);color:white;text-align:center;border:none;box-shadow:var(--shadow-lg)}
+        .highlight-box.emergency-cta h4{color:white}
         .phone-big{font-size:2.75rem;font-weight:800;color:var(--accent-light);margin:1rem 0;text-shadow:0 0 30px rgba(245,158,11,0.3)}
         .emphasis{font-weight:700;color:var(--primary);margin:1rem 0}
         .emergency-section{background:white;padding:3rem;border-radius:16px;box-shadow:var(--shadow-lg);margin:3rem 0;border:2px solid var(--border)}
@@ -148,7 +150,7 @@
         .footer-links ul{list-style:none}
         .footer-links li{margin-bottom:0.75rem}
         .footer-links a{color:#a0aec0;text-decoration:none;transition:color 0.2s}
-        .footer-bottom{max-width:1200px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid #2d3748;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;color:#718096;font-size:0.875rem}
+        .footer-bottom{max-width:1200px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid #2d3748;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:1rem;color:#718096;font-size:0.875rem}
         .payment-methods{display:flex;gap:1rem;align-items:center}
         .floating-cta{position:fixed;bottom:2rem;right:2rem;z-index:999}
         .fab{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-hover) 100%);color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:var(--shadow-glow);transition:all 0.4s cubic-bezier(0.4,0,0.2,1);text-decoration:none}
@@ -248,7 +250,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content">
                 <h1>Professional <span>Mobile Locksmith</span> in Jacksonville, FL</h1>
@@ -464,7 +466,7 @@
     <section class="service-detail" id="automotive">
         <div class="container">
             <div class="section-header">
-                <h2>🔑 Automotive Locksmith Services Jacksonville</h2>
+                <h2>🔑 Automotive Locksmith Services Jacksonville,FL</h2>
             </div>
             
             <div class="service-detail-content full-width">
@@ -592,7 +594,7 @@
     <section class="service-detail" id="residential">
         <div class="container">
             <div class="section-header">
-                <h2>🔑 Residential Locksmith Service Jacksonville</h2>
+                <h2>🔑 Residential Locksmith Service Jacksonville,FL</h2>
             </div>
             
             <div class="service-detail-content full-width">
@@ -748,7 +750,7 @@
     <section class="service-detail" id="commercial">
         <div class="container">
             <div class="section-header">
-                <h2>🔑 Commercial Locksmith Service Jacksonville</h2>
+                <h2>🔑 Commercial Locksmith Service Jacksonville,FL</h2>
             </div>
             
             <div class="service-detail-content full-width">
@@ -905,7 +907,7 @@
     <section class="service-detail" id="emergency" style="background: var(--bg-alt);">
         <div class="container">
             <div class="section-header">
-                <h2>🔑 Emergency Locksmith Service Jacksonville</h2>
+                <h2>🔑 Emergency Locksmith Service Jacksonville,FL</h2>
             </div>
             
             <div class="service-detail-content full-width">
@@ -1280,7 +1282,8 @@
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <h3>🔐 Locksmith Jacksonville FL</h3>
+                <img src="assets/images/logo.webp" alt="Locksmith Jacksonville FL" style="height:50px;width:auto;border-radius:8px;margin-bottom:1rem;">
+
                 <p>Professional mobile locksmith services for automotive, residential, and commercial needs. Licensed, bonded, and serving Jacksonville for over 17 years.</p>
                 <div class="footer-contact">
                     <a href="tel:9049228355">📞 (904) 922-8355</a>
@@ -1322,13 +1325,6 @@
         
         <div class="footer-bottom">
             <p>&copy; 2024 Locksmith Jacksonville FL. All rights reserved.</p>
-            <div class="payment-methods">
-                <span>💵 Cash</span>
-                <span>💳 Visa</span>
-                <span>💳 MasterCard</span>
-                <span>💳 Amex</span>
-                <span>💳 Discover</span>
-            </div>
         </div>
     </footer>
 
