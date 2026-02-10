@@ -1,128 +1,50 @@
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navLinks = document.getElementById('navLinks');
-
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-});
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.textContent = '☰';
-    });
-});
-
-// Header scroll behavior
-let lastScroll = 0;
-const header = document.getElementById('header');
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        if (currentScroll > lastScroll) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
-    } else {
-        header.classList.remove('hidden');
+// Optimized for speed - minimal blocking operations
+document.addEventListener('DOMContentLoaded',function(){
+    // Mobile menu
+    const m=document.getElementById('mobileMenuBtn'),n=document.getElementById('navLinks');
+    if(m&&n){
+        m.addEventListener('click',()=>{
+            n.classList.toggle('active');
+            m.textContent=n.classList.contains('active')?'✕':'☰';
+        });
+        n.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>{
+            n.classList.remove('active');
+            m.textContent='☰';
+        }));
     }
     
-    lastScroll = currentScroll;
-});
-
-// FAQ Accordion
-document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const item = button.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Close all items in the same category
-        item.parentElement.querySelectorAll('.faq-item').forEach(faqItem => {
-            faqItem.classList.remove('active');
-        });
-        
-        // Toggle current item
-        if (!isActive) {
-            item.classList.add('active');
-        }
-    });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+    // Header scroll - throttled
+    let l=0,t=document.getElementById('header');
+    if(t){
+        let r=null;
+        window.addEventListener('scroll',()=>{
+            if(r)return;
+            r=requestAnimationFrame(()=>{
+                let c=window.pageYOffset;
+                if(c>100){
+                    if(c>l)t.classList.add('hidden');
+                    else t.classList.remove('hidden');
+                }else t.classList.remove('hidden');
+                l=c;r=null;
             });
-        }
+        });
+    }
+    
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(b=>{
+        b.addEventListener('click',()=>{
+            let i=b.parentElement,a=i.classList.contains('active');
+            i.parentElement.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('active'));
+            if(!a)i.classList.add('active');
+        });
+    });
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click',function(e){
+            e.preventDefault();
+            let t=document.querySelector(this.getAttribute('href'));
+            if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+        });
     });
 });
-
-// Intersection Observer for lazy loading animations
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('loaded');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.service-card, .stat-card, .faq-category').forEach(el => {
-    el.classList.add('lazy-load');
-    observer.observe(el);
-});
-
-// Add loaded class immediately for elements in viewport on load
-window.addEventListener('load', () => {
-    document.querySelectorAll('.lazy-load').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) {
-            el.classList.add('loaded');
-        }
-    });
-});
-
-// Performance: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Optimized scroll handler
-const optimizedScroll = debounce(() => {
-    // Additional scroll-based animations can be added here
-}, 16);
-
-window.addEventListener('scroll', optimizedScroll);
-
-// Service Worker registration for PWA capabilities (optional enhancement)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Uncomment to enable service worker
-        // navigator.serviceWorker.register('/sw.js');
-    });
-}
