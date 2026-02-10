@@ -13,6 +13,20 @@ document.addEventListener('DOMContentLoaded',function(){
         }));
     }
     
+    // Services dropdown toggle for mobile
+    const d=document.getElementById('servicesDropdown');
+    if(d){
+        const t=d.querySelector('.dropdown-toggle');
+        if(t){
+            t.addEventListener('click',(e)=>{
+                if(window.innerWidth<=968){
+                    e.preventDefault();
+                    d.classList.toggle('active');
+                }
+            });
+        }
+    }
+    
     // Header scroll - throttled
     let l=0,t=document.getElementById('header');
     if(t){
