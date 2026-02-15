@@ -1,5 +1,3 @@
-const fetch = require('node-fetch');
-
 exports.handler = async (event, context) => {
   if(event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -15,7 +13,7 @@ exports.handler = async (event, context) => {
       {
         source: "javascript",
         from: "CompanyName",
-        to: "+COMPANY_PHONE_NUMBER", // Client's number
+        to: "+16783287458", // Client's number
         body: `New message from customer:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`
       }
     ]
@@ -38,6 +36,7 @@ exports.handler = async (event, context) => {
       console.error(data);
       return { statusCode: 500, body: JSON.stringify({success:false}) };
     }
+
   } catch (err) {
     console.error(err);
     return { statusCode: 500, body: JSON.stringify({success:false}) };
