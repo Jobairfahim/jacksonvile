@@ -243,6 +243,7 @@
                         </div>
                     </li>
                     <li><a href="#areas">Service Area</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li class="mobile-phone-btn"><a href="tel:9049228355" class="btn-nav">📞 Call Now</a></li>
                 </ul>
@@ -1278,9 +1279,80 @@
                 <div class="area-item">St Augustine Beach</div>
                 <div class="area-item">Nocatee</div>
             </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our professional locksmith team for fast, reliable service throughout Jacksonville.</p>
+            </div>
             
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.8763633564474!2d-81.7877849848706!3d30.27368418180041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e5c5e7f5d6c7b5%3A0x7e8b4b8c5d6e7f8a!2s9049%20Norfolk%20Blvd%2C%20Jacksonville%2C%20FL%2032208!5e0!3m2!1sen!2sus!4v1707523200000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Locksmith Jacksonville FL Location"></iframe>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Call Us</h3>
+                            <p>(904) 922-8355</p>
+                            <span>24/7 Emergency Service</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Visit Us</h3>
+                            <p>9049 Norfolk Blvd</p>
+                            <span>Jacksonville, FL 32208</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <h3>Hours</h3>
+                            <p>Open 24/7</p>
+                            <span>Always Available</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contact-form" action="/.netlify/functions/send-clicksend" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(904) 555-0123">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your locksmith needs..." rows="5"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                        </button>
+                        
+                        <div class="form-message" id="form-status" style="display: none;"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

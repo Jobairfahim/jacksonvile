@@ -62,3 +62,37 @@ document.addEventListener('DOMContentLoaded',function(){
         });
     });
 });
+
+const form = document.getElementById('contact-form');
+const statusElement = document.getElementById('form-status');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  statusElement.textContent = "Sending...";
+
+  const formData = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    message: form.message.value
+  };
+
+  try {
+    const response = await fetch('/.netlify/functions/send-clicksend', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+    if(result.success){
+      statusElement.textContent = "Message sent successfully!";
+      form.reset();
+    } else {
+      statusElement.textContent = "Failed to send message. Try again later.";
+    }
+  } catch (err) {
+    statusElement.textContent = "Error sending message.";
+    console.error(err);
+  }
+});
